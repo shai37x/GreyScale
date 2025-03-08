@@ -1,32 +1,54 @@
-.flex-container{
+/* Navbar.css */
+#navbarNav{
+  margin-left: 25px;
+}
+.navbar {
+  width: 100%;
+  background-color: #3b3c3e;
+  color: white;
+  padding: 16px 24px;
   display: flex;
-  justify-content:center;  
+  justify-content: space-between;
   align-items: center;
-}
-/* Login button - Black border, white text */
-.btn-outline-primary {
- color: black !important;
- border-color: black !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.btn-outline-primary:hover {
- background-color: black !important;
- color: white !important;
+.navbar h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
-/* Sign-up button - Black background, white text */
-.btn-primary {
- background-color: black !important;
- color: white !important;
- border-color: black !important;
+.nav-links {
+  display: flex;
+  align-items: center; /* Ensures vertical alignment */
+  gap: 20px; /* Space between items */
 }
 
-.btn-primary:hover {
- background-color: white !important;
- color: black !important;
- border-color: black !important;
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 8px 12px;
+  transition: color 0.3s ease-in-out;
+  white-space: nowrap; /* Prevents breaking into two lines */
 }
-.img-fluid{
- height: 300px;
- width: 500px;
+
+.nav-links a:hover {
+  color: #facc15; /* Yellow on hover */
+}
+
+/* Responsive Fix */
+@media (max-width: 768px) {
+  .navbar {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 12px;
+  }
+
+  .nav-links {
+      display: flex;
+      flex-direction: row; /* Ensuring horizontal alignment */
+      gap: 15px;
+  }
 }

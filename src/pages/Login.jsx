@@ -1,34 +1,85 @@
 import { useState } from "react";
+import axios from "axios";
+import "../components/css/Login.css"
+import {useNavigate} from "react-router-dom"; 
+
+
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const navigetor=useNavigate();
+  const [email, setEmail] = useState(""); // No validation issue
   const [password, setPassword] = useState("");
+  const [userType, setUserType] = useState("client");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Logging in with:", { email, password });
+  const handleSubmit = async (event) => {
+    event.preventDefault(); 
+    const url = "http://localhost:7001/userAuth/login";
+    const data = { username: email, password: password }; // Ensure correct field names
+
+    try {
+      const response = await axios.post(url, data, {
+        headers: { 
+          'Content-Type': 'application/json', 
+          'Accept': 'application/json', 
+        }
+      });
+
+      if (response.status === 200) {
+        let user = response.data.data.user;
+        localStorage.setItem('user', JSON.stringify(user));
+
+        alert("Login successful");
+
+        // if (user.role === "admin") {
+        //   localStorage.setItem('role', 'admin');
+        //   // navigate("/AdminPage");
+        // } else if (user.role === 'staff') {
+        //   localStorage.setItem('role', 'staff');
+        //   // navigate('/StaffPage');
+        // } else {
+         navigetor("/");
+        // }
+      }
+    
+    } catch (error) {
+      alert("Login failed: " + (error.response ? error.response.data.message : error.message));
+    }
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <form onSubmit={handleSubmit} className="bg-white p-6 shadow-lg rounded-lg">
-        <h2 className="text-2xl mb-4">Login</h2>
-        <input
-          type="email"
-          placeholder="Email"
-          className="border p-2 w-full mb-2"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="border p-2 w-full mb-2"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button className="bg-blue-500 text-white px-4 py-2 rounded">Login</button>
-      </form>
+    <div className="login-container">
+      <div className="login-card">
+        <h2 className="login-title">Login</h2>
+        <div className="role-selector">
+          <button
+            className={userType === "client" ? "active" : ""}
+            onClick={() => setUserType("client")}
+          >
+            Client
+          </button>
+          <button
+            className={userType === "creative" ? "active" : ""}
+            onClick={() => setUserType("creative")}
+          >
+            Creative Professional
+          </button>
+        </div>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text" // Changed from email to text (prevents browser validation)
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="text" // Changed from password to text to disable validation
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button type="submit">Login</button>
+        </form>
+      </div>
     </div>
   );
 };
