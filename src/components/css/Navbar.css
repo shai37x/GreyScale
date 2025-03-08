@@ -1,0 +1,32 @@
+.flex-container{
+  display: flex;
+  justify-content:center;  
+  align-items: center;
+}
+/* Login button - Black border, white text */
+.btn-outline-primary {
+ color: black !important;
+ border-color: black !important;
+}
+
+.btn-outline-primary:hover {
+ background-color: black !important;
+ color: white !important;
+}
+
+/* Sign-up button - Black background, white text */
+.btn-primary {
+ background-color: black !important;
+ color: white !important;
+ border-color: black !important;
+}
+
+.btn-primary:hover {
+ background-color: white !important;
+ color: black !important;
+ border-color: black !important;
+}
+.img-fluid{
+ height: 300px;
+ width: 500px;
+}
