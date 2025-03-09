@@ -1,46 +1,35 @@
 import { useState } from "react";
 import axios from "axios";
-import "../components/css/Login.css"
-import {useNavigate} from "react-router-dom"; 
-
-
+import "../components/css/Login.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const navigetor=useNavigate();
-  const [email, setEmail] = useState(""); // No validation issue
+  const navigate = useNavigate();
+  const [email, setEmail] = useState(""); 
   const [password, setPassword] = useState("");
-  const [userType, setUserType] = useState("client");
+  const [userType, setUserType] = useState("client"); // Default to "client"
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
     const url = "http://localhost:7001/userAuth/login";
-    const data = { username: email, password: password }; // Ensure correct field names
+    const data = { username: email, password: password };
 
     try {
       const response = await axios.post(url, data, {
-        headers: { 
-          'Content-Type': 'application/json', 
-          'Accept': 'application/json', 
-        }
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
       });
 
       if (response.status === 200) {
         let user = response.data.data.user;
-        localStorage.setItem('user', JSON.stringify(user));
-
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.reload();
         alert("Login successful");
-
-        // if (user.role === "admin") {
-        //   localStorage.setItem('role', 'admin');
-        //   // navigate("/AdminPage");
-        // } else if (user.role === 'staff') {
-        //   localStorage.setItem('role', 'staff');
-        //   // navigate('/StaffPage');
-        // } else {
-         navigetor("/");
-        // }
+        navigate("/");
       }
-    
     } catch (error) {
       alert("Login failed: " + (error.response ? error.response.data.message : error.message));
     }
@@ -50,34 +39,37 @@ const Login = () => {
     <div className="login-container">
       <div className="login-card">
         <h2 className="login-title">Login</h2>
+        
+        {/* Role Selector with Bottom Line Effect */}
         <div className="role-selector">
-          <button
-            className={userType === "client" ? "active" : ""}
+          <span 
+            className={userType === "client" ? "active" : ""} 
             onClick={() => setUserType("client")}
           >
             Client
-          </button>
-          <button
-            className={userType === "creative" ? "active" : ""}
+          </span>
+          <span 
+            className={userType === "creative" ? "active" : ""} 
             onClick={() => setUserType("creative")}
           >
-            Creative Professional
-          </button>
+            Photographer
+          </span>
         </div>
+
         <form onSubmit={handleSubmit}>
           <input
-            type="text" // Changed from email to text (prevents browser validation)
+            type="text"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
-            type="text" // Changed from password to text to disable validation
+            type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit">Login</button>
+          <button className="lbutton" type="submit">Login</button>
         </form>
       </div>
     </div>
