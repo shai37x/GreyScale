@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import "../components/css/Signup.css";
 
 const Signup = () => {
@@ -50,7 +49,6 @@ const Signup = () => {
         {error && <p className="error-message">{error}</p>}
 
         <form onSubmit={handleSubmit}>
-          
           <input type="text" name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} required />
           <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
           <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} required />
@@ -62,14 +60,16 @@ const Signup = () => {
             <option value="UAE">UAE</option>
           </select>
 
-          {formData.country && (
-            <select name="state" value={formData.state} onChange={handleChange} required>
-              <option value="">Select State</option>
-              {validStates[formData.country]?.map((state, index) => (
+          <select name="state" value={formData.state} onChange={handleChange} required>
+            <option value="">Select State</option>
+            {formData.country && validStates[formData.country] ? (
+              validStates[formData.country].map((state, index) => (
                 <option key={index} value={state}>{state}</option>
-              ))}
-            </select>
-          )}
+              ))
+            ) : (
+              <option disabled>Please select a country first</option>
+            )}
+          </select>
 
           <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
           <input type="password" name="confirmPassword" placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleChange} required />

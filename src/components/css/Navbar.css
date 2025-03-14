@@ -66,3 +66,32 @@
       gap: 15px;
   }
 }
+
+.profile-btn {
+  width: 50px;
+  height: 40px;
+  border-radius: 50%; /* Perfectly round */
+  border: 2px solid black; /* Clean black border */
+  background: #f0f0f0; /* Soft gray background */
+  color: black; /* Black text */
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effect - Subtle Darker Gray */
+.profile-btn:hover {
+  background: #d6d6d6; /* Slightly darker gray */
+  color: black;
+}
+
+/* Button Alignment */
+.nav-button-container {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Space between buttons */
+}

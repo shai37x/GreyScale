@@ -1,115 +1,187 @@
 /* 🔹 Page Styling */
 .professionals-page {
-    text-align: center;
-    padding: 20px;
-    background-color: #f8f9fa;
-  }
-  
-  h2 {
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  /* 🔹 Professional Cards */
-  .professional-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .professional-card {
-    width: 300px; /* Slightly wider */
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    text-align: center;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .professional-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  /* 🔹 Profile Section */
-  .profile {
-    margin-bottom: 10px;
-  }
-  
-  .profile-pic {
-    width: 120px;  /* ⬆ Increased from 100px */
-    height: 120px; /* ⬆ Increased from 100px */
-    border-radius: 50%;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  
-  .profile-pic:hover {
-    transform: scale(1.1);
-  }
-  
-  h3 {
-    font-size: 20px;
-    color: #222;
-    margin: 10px 0;
-  }
-  
-  p {
-    font-size: 15px;
-    color: #666;
-  }
-  
-  /* 🔹 Latest Photos Grid */
-  .latest-photos {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-  }
-  
-  .latest-photo {
-    width: 80px;   /* ⬆ Increased from 60px */
-    height: 80px;  /* ⬆ Increased from 60px */
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-  }
-  
-  .latest-photo:hover {
-    transform: scale(1.1);
-  }
-  
-  /* 🔹 Image Preview Modal */
-  .image-preview-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .image-preview {
-    max-width: 95%;
-    max-height: 95%;
-  }
-  
-  .image-preview img {
-    width: 100%;
-    height: auto;
-    max-height: 85vh; /* ⬆ Increased from 80vh */
-    border-radius: 10px;
-    box-shadow: 0px 6px 12px rgba(255, 255, 255, 0.2);
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .image-preview-overlay:hover img {
-    transform: scale(1.08);
-  }
-  
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+}
+
+h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+  height: 50px;
+  width: 100%;
+}
+
+/* 🔹 Professional Cards */
+.professional-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.professional-card {
+  width: 300px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.professional-card:hover {
+  transform: translateY(-5px);
+}
+
+/* 🔹 Profile Section */
+.profile {
+  margin-bottom: 10px;
+}
+
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.profile-pic:hover {
+  transform: scale(1.1);
+}
+
+h3 {
+  font-size: 20px;
+  color: #222;
+  margin: 10px 0;
+}
+
+p {
+  font-size: 15px;
+  color: #666;
+}
+
+/* 🔹 Latest Photos Grid */
+.latest-photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.latest-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.latest-photo:hover {
+  transform: scale(1.1);
+}
+
+/* 🔹 Add Button */
+.add-button {
+  margin-top: 10px;
+  padding: 8px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-button:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+.add-button:active {
+  background-color: #1e7e34;
+  transform: scale(0.95);
+}
+
+/* 🔹 Image Preview Modal */
+.image-preview-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.image-preview {
+  display: flex;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 90%;
+  max-height: 90%;
+  align-items: center;
+  gap: 20px;
+}
+
+.image-preview img {
+  max-width: 500px;
+  max-height: 500px;
+  border-radius: 10px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* 🔹 Comment Section (Right Side) */
+.comment-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 300px;
+}
+
+.comment-box {
+  width: 100%;
+  height: 150px;
+  font-size: 16px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+  outline: none;
+}
+
+.complaint-checkbox {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.complaint-checkbox input {
+  margin-right: 5px;
+}
+
+.submit-comment {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-comment:hover {
+  background-color: #0056b3;
+}

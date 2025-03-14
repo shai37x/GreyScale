@@ -40,7 +40,7 @@ const AdminBooking = () => {
             <th>To Date</th>
             <th>Address</th>
             <th>Payment</th>
-            <th>Status</th>
+            <th>Staff Confirmation</th>
             <th>Amount</th>
             <th>Contract Amount</th>
             <th>User Confirmation</th>

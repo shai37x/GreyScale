@@ -1,22 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../components/css/Booking.css";
-import AdminBooking from "./AdminBooking";
+import BookingData from "../components/BookingData";
+import Ddata from "../components/Ddata.json"; // Verify this path!
 
 const Booking = () => {
   const [showForm, setShowForm] = useState(false);
-  const [bookings, setBookings] = useState([
-    { id: 1, startDate: "2025-03-01", endDate: "2025-03-05", address: "Kochi, Kerala", paymentStatus: "Paid", status: "Confirmed", amount: "₹5000", contractAmount: "₹5000", userConfirmed: true },
-    { id: 2, startDate: "2025-04-10", endDate: "2025-04-12", address: "Dubai, UAE", paymentStatus: "Pending", status: "Confirmed", amount: "AED 800", contractAmount: "₹8000", userConfirmed: false },
-  ]);
-  const userRole=localStorage.getItem("role")
+  const [bookings, setBookings] = useState([]);
+  const [photographers, setPhotographers] = useState([]); // Store available staff
   const [newBooking, setNewBooking] = useState({
     startDate: "",
     endDate: "",
     address: "",
     country: "",
+    amount: "",
   });
 
   const allowedCountries = ["Kerala", "UAE"];
+
+  useEffect(() => {
+    setBookings(BookingData);
+    setPhotographers(Ddata); // Load staff (photographers) from Ddata.json
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -29,42 +33,40 @@ const Booking = () => {
       alert("Service is only available in Kerala & UAE.");
       return;
     }
+
+    // Assign a random staff member
+    const assignedPhotographer = photographers[Math.floor(Math.random() * photographers.length)];
+
     const newBookingEntry = {
       id: bookings.length + 1,
+      user: "User",
       ...newBooking,
       paymentStatus: "Pending",
       status: "Pending",
-      amount: "TBD",
       contractAmount: "",
+      staffAccepted: false,
       userConfirmed: false,
+      staffMessage: "",
+      staffId: assignedPhotographer?.id || "N/A", // Added staffId
+      staffName: assignedPhotographer?.name || "Not Assigned",
     };
+
     setBookings([...bookings, newBookingEntry]);
-    setNewBooking({ startDate: "", endDate: "", address: "", country: "" });
+    setNewBooking({ startDate: "", endDate: "", address: "", country: "", amount: "" });
     setShowForm(false);
   };
 
-  const handleContractAmountChange = (id, value) => {
-    setBookings(bookings.map((b) => (b.id === id ? { ...b, contractAmount: value } : b)));
-  };
-
-  const handleUserConfirmation = (id, isAccepted) => {
+  const handlePayment = (id) => {
     setBookings(
       bookings.map((b) =>
         b.id === id
-          ? {
-              ...b,
-              status: isAccepted ? "Confirmed" : "Declined",
-              userConfirmed: isAccepted,
-              amount: isAccepted ? b.contractAmount : "N/A",
-            }
+          ? { ...b, paymentStatus: "Paid", status: "Confirmed", staffMessage: "Payment completed, booking confirmed!" }
           : b
       )
     );
   };
 
   return (
-     userRole === "user"?(
-
     <div className="booking-container">
       <div className="booking-header">
         <h2>My Bookings</h2>
@@ -99,9 +101,11 @@ const Booking = () => {
             <th>From Date</th>
             <th>To Date</th>
             <th>Address</th>
+            <th>Amount</th>
             <th>Payment</th>
             <th>Status</th>
-            <th>Contract Amount</th>
+            <th>Message</th>
+            <th>Staff Name</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -111,38 +115,27 @@ const Booking = () => {
               <td>{booking.startDate}</td>
               <td>{booking.endDate}</td>
               <td>{booking.address}</td>
-              <td className={booking.paymentStatus.toLowerCase()}>{booking.paymentStatus}</td>
-              <td className={booking.status.toLowerCase()}>{booking.status}</td>
-              <td>
-                {booking.userConfirmed ? (
-                  booking.contractAmount
-                ) : (
-                  <input
-                    type="text"
-                    value={booking.contractAmount}
-                    onChange={(e) => handleContractAmountChange(booking.id, e.target.value)}
-                  />
-                )}
+              <td>{booking.amount}</td>
+              <td className={booking.paymentStatus.toLowerCase()}>
+                {booking.paymentStatus}
               </td>
+              <td className={booking.status.toLowerCase()}>{booking.status}</td>
+              <td>{booking.staffMessage}</td>
+              <td>{booking.staffName}</td> {/* Displaying assigned staff */}
               <td>
-                {!booking.userConfirmed ? (
-                  <>
-                    <button className="accept-btn decession-btn" onClick={() => handleUserConfirmation(booking.id, true)}>
-                      Accept
-                    </button>
-                    <button className="reject-btn decession-btn" onClick={() => handleUserConfirmation(booking.id, false)}>
-                      Reject
-                    </button>
-                  </>
-                ): (<p className="confirmed">Confirmed</p>)}
+                {booking.paymentStatus === "Pending" ? (
+                  <button className="pay-btn" onClick={() => handlePayment(booking.id)}>
+                    Pay Now
+                  </button>
+                ) : (
+                  <p className="confirmed">Paid</p>
+                )}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-
-      
-    </div>): userRole=="admin"?(<div><AdminBooking /></div>):(<div></div>)
+    </div>
   );
 };
 

@@ -10,14 +10,14 @@ const Home = () => {
             "Capturing timeless moments with passion and artistry, where every frame tells a story, 
             every click preserves an emotion, and every memory is painted in light and shadow."
           </p>
-          <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+          {/* <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
             <button type="button" className="btn btn-primary btn-lg px-4 me-sm-3">
               Primary button
             </button>
             <button type="button" className="btn btn-outline-secondary btn-lg px-4">
               Secondary
             </button>
-          </div>
+          </div> */}
         </div>
         
         {/* Full-width image */}

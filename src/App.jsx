@@ -6,10 +6,13 @@ import Signup from './pages/Signup'
 import Booking from './pages/Booking'
 import Footer from './pages/Footer'
 import Portfolio from './pages/Portfolio'
+import StaffRequestPage from './pages/StaffRequest'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Professionals from './pages/Professionals'
 import Photographer from './pages/Photographer'
+import Profile from './pages/Profile'
+import AdminBooking from './pages/AdminBooking'
 
 
 export const App = () => {
@@ -25,7 +28,10 @@ export const App = () => {
         <Route path="/Booking" element={<Booking />} />
         <Route path='/Professionals' element={<Professionals />} />
         <Route path="/Admin" element={<Portfolio />} />
-        <Route path="/Staff" element={<Photographer />} />
+        <Route path="/AdminBooking" element={<AdminBooking />} />
+        <Route path="/Photographer" element={<Photographer />} />
+        <Route path="/Profile" element={<Profile />} />
+        <Route path='/StaffRequest' element={<StaffRequestPage/>} />
         
       </Routes>
       <Footer />

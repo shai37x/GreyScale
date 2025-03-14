@@ -28,18 +28,22 @@ const Login = () => {
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("role", user.role);
 
+        console.log("User data:", user);
+        console.log("User data stored:", localStorage.getItem("user"));
+
         alert("Login successful");
-        if(user.role == 'admin') {
+
+        if (user.role === 'admin') {
           navigate("/Admin");
-  
-          } else if(user.role == 'user') {
-            navigate("/");
-          } else {
-            navigate("/Staff");
-          }
-        window.location.reload();
+        } else if (user.role === 'user') {
+          navigate("/");
+        } else {
+          navigate("/");
+        }
+        window.location.reload(); // Refresh to clear state
       }
     } catch (error) {
+      console.error("Login failed:", error);
       alert("Login failed: " + (error.response ? error.response.data.message : error.message));
     }
   };

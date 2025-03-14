@@ -1,22 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate , useLocation} from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./css/Navbar.css"; // Import CSS file
 
 const Navbar = () => {
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState(null);//profile as default if user data not present
   const navigate = useNavigate();
   const location = useLocation();
+  const storedRole = localStorage.getItem("role")
+  
 
   useEffect(() => {
-    // Check if the user is logged in
-    const loggedIn = localStorage.getItem("isLoggedIn");
-    setIsLoggedIn(loggedIn === "true");
+    const storedUser = localStorage.getItem("user");
+    const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+    console.log(storedRole);
+    
+    if (loggedIn && storedUser) {
+      setIsLoggedIn(true);
+      setUser(JSON.parse(storedUser));
+    }
   }, []);
 
-  // Navigation Functions
   function goHome() {
     navigate("/");
+
+    
   }
 
   function goLogin() {
@@ -28,25 +36,42 @@ const Navbar = () => {
   }
 
   function goBooking() {
-    navigate("/Booking");
-  }
-  
+    if (storedRole=="staff"){
+      navigate("/StaffRequest")
+    }
+    else if (storedRole=="admin"){
+      navigate("/AdminBooking")
+    }
+    else{
+      navigate("/Booking");
+  }}
+
   function goProfessionals() {
-    navigate("/Professionals")
+    
+    navigate("/Professionals");
+  }
+   
+  function goPhotographer() {
+    navigate("/Photographer")
+  }
+
+  function goProfile() {
+    navigate("/Profile");
+    console.log(location.pathname)
   }
 
   function handleLogout() {
-    localStorage.removeItem("isLoggedIn"); // Remove login flag
-    setIsLoggedIn(false);
     localStorage.clear();
-    navigate("/"); // Redirect to home after logout
-    window.location.reload(); // Refresh the page
+    setIsLoggedIn(false);
+    navigate("/");
+    window.location.reload(); // Refresh to clear state
+
   }
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="#" onClick={goHome}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="50"
@@ -74,35 +99,43 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a onClick={goHome} 
-              className={`nav-link ${location.pathname==="/"?"active":""}`} 
-              aria-current="page" h
-              href="#">
+              <a onClick={goHome} className={`nav-link ${location.pathname === "/" ? "active" : ""}`} href="#">
                 Home
               </a>
             </li>
             <li className="nav-item">
-              <a onClick={goProfessionals} 
-              className={`nav-link ${location.pathname==="/Professionals"?"active":""}`}
-              href="#">
-                Professionals</a>
+              {storedRole!="staff"?(
+                <a onClick={goProfessionals} className={`nav-link ${location.pathname === "/Professionals" ? "active" : ""}`} href="#">
+                  Proffessionals
+              </a>)
+              :
+              (
+                <a onClick={goPhotographer} className={`nav-link ${location.pathname === "/Photographer" ? "active" : ""}`} href="#">
+                Profile
+              </a>
+              )}
+              
+              
             </li>
 
-            {/* Show Bookings only when logged in */}
+            {/* Show Booking only when logged in */}
             {isLoggedIn && (
               <li className="nav-item">
-                <a onClick={goBooking} 
-                className={`nav-link ${location.pathname==='/Booking'?"active":"" }`} 
-                href="#">
-                  Booking
-                </a>
+              <a 
+  onClick={goBooking} 
+  className={`nav-link ${location.pathname === "/Booking" || location.pathname === "/StaffRequest" ? "active" : ""}`} 
+  href="#"
+>
+  Booking
+</a>
+
               </li>
             )}
           </ul>
 
-          {/* Show Login & Signup when not logged in */}
+          {/* Right Side Buttons */}
           {!isLoggedIn ? (
-            <div className="d-flex ms-auto text-end"> 
+            <div className="d-flex ms-auto text-end">
               <button onClick={goLogin} type="button" className="btn btn-outline-primary me-2">
                 Login
               </button>
@@ -111,10 +144,14 @@ const Navbar = () => {
               </button>
             </div>
           ) : (
-            // Show Logout when logged in
-            <div className="ms-auto text-end">
-              <button onClick={handleLogout} type="button" className="btn btn-dark">
+            <div className="ms-auto d-flex align-items-center gap-1">
+              {/* Show Profile if logged in */}
+              
+              <button onClick={handleLogout} type="button" className="btn btn-outline-secondary me-2">
                 Logout
+              </button>
+              <button onClick={goProfile} type="button" className="profile-btn">
+                {user?.name.slice(0, 2).toUpperCase() || "Profile"}
               </button>
             </div>
           )}
