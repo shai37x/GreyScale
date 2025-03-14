@@ -38,6 +38,7 @@ const Navbar = () => {
   function handleLogout() {
     localStorage.removeItem("isLoggedIn"); // Remove login flag
     setIsLoggedIn(false);
+    localStorage.clear();
     navigate("/"); // Redirect to home after logout
     window.location.reload(); // Refresh the page
   }

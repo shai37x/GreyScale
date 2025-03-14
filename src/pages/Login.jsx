@@ -26,9 +26,18 @@ const Login = () => {
         let user = response.data.data.user;
         localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("isLoggedIn", "true");
-        window.location.reload();
+        localStorage.setItem("role", user.role);
+
         alert("Login successful");
-        navigate("/");
+        if(user.role == 'admin') {
+          navigate("/Admin");
+  
+          } else if(user.role == 'user') {
+            navigate("/");
+          } else {
+            navigate("/Staff");
+          }
+        window.location.reload();
       }
     } catch (error) {
       alert("Login failed: " + (error.response ? error.response.data.message : error.message));

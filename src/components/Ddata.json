@@ -1,0 +1,77 @@
+[
+    {
+      "id": "1",
+      "name": "John Doe",
+      "bio": "Freelance photographer based in Dubai.",
+      "location": "Dubai, UAE",
+      "profilePic": "https://i.pravatar.cc/150?img=1",
+      "photos": [
+        "/images/dummyImages/c1.jpg",
+      "/images/dummyImages/c2.jpg",
+      "/images/dummyImages/c3.jpg",
+      "/images/dummyImages/a1.jpg",
+      "/images/dummyImages/sit.jpg",
+      "/images/dummyImages/walk.jpg"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Aisha Khalid",
+      "bio": "Wedding & portrait photographer. Capturing timeless moments.",
+      "location": "Kerala, India",
+      "profilePic": "https://i.pravatar.cc/150?img=2",
+      "photos": [
+        "/images/dummyImages/d2.jpg",
+        "/images/dummyImages/gim1.jpg",
+        "/images/dummyImages/kiss.jpg",
+        "/images/dummyImages/main.jpg",
+        "/images/dummyImages/sit.jpg",
+        "/images/dummyImages/walk.jpg"
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Michael Smith",
+      "bio": "Destination wedding specialist. Capturing love stories worldwide.",
+      "location": "Abu Dhabi, UAE",
+      "profilePic": "https://i.pravatar.cc/150?img=3",
+      "photos": [
+        "/images/dummyImages/raj1.jpg",
+        "/images/dummyImages/raj2.jpg",
+        "/images/dummyImages/rim1.jpg",
+        "/images/dummyImages/rim2.jpg",
+        "/images/dummyImages/rim3.jpg",
+        "/images/dummyImages/raj2.jpg"
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Sophia Fernandes",
+      "bio": "Fashion & editorial photographer. Creating art with every shot.",
+      "location": "Dubai, UAE",
+      "profilePic": "https://i.pravatar.cc/150?img=4",
+      "photos": [
+        "/images/dummyImages/a4.jpg",
+        "/images/dummyImages/d1.jpg",
+        "/images/dummyImages/d2.jpg",
+        "/images/dummyImages/d3.jpg",
+        "/images/dummyImages/d4.jpg",
+        "/images/dummyImages/d5.jpg"
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Rajesh Kumar",
+      "bio": "Destination wedding specialist. Making love stories come alive.",
+      "location": "Kochi, India",
+      "profilePic": "https://i.pravatar.cc/150?img=5",
+      "photos": [
+        "/images/dummyImages/d6.jpg",
+        "/images/dummyImages/d7.jpg",
+        "/images/dummyImages/raj2.jpg",
+        "/images/dummyImages/main.jpg",
+        "/images/dummyImages/sit.jpg",
+        "/images/dummyImages/walk.jpg"
+      ]
+    }
+  ]

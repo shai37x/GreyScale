@@ -1,145 +1,115 @@
-/* Main Container */
+/* 🔹 Page Styling */
 .professionals-page {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: auto;
-}
-
-/* Section Titles */
-h2 {
     text-align: center;
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-}
-
-/* Highest Liked Photos Grid - 3 Per Row */
-.highest-liked {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+  }
+  
+  h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* 🔹 Professional Cards */
+  .professional-cards {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-}
-
-/* Photo Card */
-.liked-photo-card {
-    position: relative;
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    transition: transform 0.3s ease-in-out;
-}
-
-.liked-photo-card:hover {
-    transform: scale(1.05);
-}
-
-/* Image */
-.liked-photo {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-/* Overlay for Name & Likes */
-.overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    text-align: center;
-    padding: 5px;
-    font-size: 14px;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.liked-photo-card:hover .overlay {
-    opacity: 1;
-}
-
-/* Professional Cards Grid - 2 Profiles Per Row */
-.professional-cards {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
-    justify-content: center;
-}
-
-/* Card Styling */
-.professional-card {
-    background: #fff;
+  }
+  
+  .professional-card {
+    width: 300px; /* Slightly wider */
+    background: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 15px;
     text-align: center;
     transition: transform 0.3s ease-in-out;
-    overflow: hidden;
-}
-
-.professional-card:hover {
-    transform: scale(1.05);
-}
-
-/* Profile Image */
-.profile-pic {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
+  }
+  
+  .professional-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* 🔹 Profile Section */
+  .profile {
     margin-bottom: 10px;
-}
-
-/* Professional Details */
-.profile h3 {
-    font-size: 1.2rem;
-    margin: 5px 0;
-}
-
-.profile p {
-    font-size: 0.9rem;
-    color: #777;
-}
-
-/* Latest Photos Grid */
-.latest-photos {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.latest-photos img {
-    width: 100%;
-    height: 80px;
+  }
+  
+  .profile-pic {
+    width: 120px;  /* ⬆ Increased from 100px */
+    height: 120px; /* ⬆ Increased from 100px */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .profile-pic:hover {
+    transform: scale(1.1);
+  }
+  
+  h3 {
+    font-size: 20px;
+    color: #222;
+    margin: 10px 0;
+  }
+  
+  p {
+    font-size: 15px;
+    color: #666;
+  }
+  
+  /* 🔹 Latest Photos Grid */
+  .latest-photos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+  
+  .latest-photo {
+    width: 80px;   /* ⬆ Increased from 60px */
+    height: 80px;  /* ⬆ Increased from 60px */
     border-radius: 8px;
-    object-fit: cover;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    /* Highest Liked Photos - Switch to 2 Per Row */
-    .highest-liked {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    /* Professional Cards - Switch to 1 Per Row */
-    .professional-cards {
-        grid-template-columns: 1fr;
-    }
-
-    .profile-pic {
-        width: 80px;
-        height: 80px;
-    }
-}
-
-/* Small Mobile Screens */
-@media (max-width: 480px) {
-    .highest-liked {
-        grid-template-columns: 1fr;
-    }
-}
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .latest-photo:hover {
+    transform: scale(1.1);
+  }
+  
+  /* 🔹 Image Preview Modal */
+  .image-preview-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .image-preview {
+    max-width: 95%;
+    max-height: 95%;
+  }
+  
+  .image-preview img {
+    width: 100%;
+    height: auto;
+    max-height: 85vh; /* ⬆ Increased from 80vh */
+    border-radius: 10px;
+    box-shadow: 0px 6px 12px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .image-preview-overlay:hover img {
+    transform: scale(1.08);
+  }
+  
